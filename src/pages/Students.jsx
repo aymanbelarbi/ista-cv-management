@@ -107,7 +107,7 @@ const Students = () => {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 gap-4">
+      <div className="space-y-4">
         {filtered.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12">
@@ -116,83 +116,62 @@ const Students = () => {
           </Card>
         ) : (
           filtered.map((stagiaire) => (
-            <Card
-              key={stagiaire.id}
-              className="hover:shadow-md transition-shadow"
-            >
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-6 flex-1">
-                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      {stagiaire.photo ? (
-                        <img
-                          src={stagiaire.photo}
-                          alt=""
-                          className="w-full h-full rounded-full object-cover"
-                        />
-                      ) : (
-                        <span className="text-2xl font-semibold text-primary">
-                          {stagiaire.prenom[0]}
-                          {stagiaire.nom[0]}
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div>
-                        <p className="font-semibold text-lg">
-                          {stagiaire.prenom} {stagiaire.nom}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          Matricule: {stagiaire.matricule}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium">
-                          {stagiaire.filiere}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          Promotion {stagiaire.anneePromotion}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-sm">{stagiaire.email}</p>
-                        <p className="text-sm text-muted-foreground">
-                          {stagiaire.telephone}
-                        </p>
-                      </div>
-                    </div>
+            <Card key={stagiaire.id} className="hover:bg-accent/50 transition-colors">
+              <CardContent className="p-4 flex items-center justify-between">
+                <div className="flex items-center gap-4 flex-1">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    {stagiaire.photo ? (
+                      <img
+                        src={stagiaire.photo}
+                        alt=""
+                        className="w-full h-full rounded-full object-cover"
+                      />
+                    ) : (
+                      <span className="text-lg font-semibold text-primary">
+                        {stagiaire.prenom[0]}
+                        {stagiaire.nom[0]}
+                      </span>
+                    )}
                   </div>
-                  <div className="flex gap-2 flex-shrink-0">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() => navigate(`/cv-preview/${stagiaire.id}`)}
-                      title="Aperçu du CV"
-                    >
-                      <Eye className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() => navigate(`/edit-cv/${stagiaire.id}`)}
-                      title="Modifier"
-                    >
-                      <Edit className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() =>
-                        handleDelete(
-                          stagiaire.id,
-                          `${stagiaire.prenom} ${stagiaire.nom}`
-                        )
-                      }
-                      title="Supprimer"
-                    >
-                      <Trash2 className="h-4 w-4 text-destructive" />
-                    </Button>
+                  <div className="flex-1">
+                    <p className="font-medium">
+                      {stagiaire.prenom} {stagiaire.nom}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {stagiaire.filiere} • Promotion {stagiaire.anneePromotion} • Matricule: {stagiaire.matricule}
+                    </p>
                   </div>
+                </div>
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => navigate(`/cv-preview/${stagiaire.id}`)}
+                    title="Aperçu du CV"
+                  >
+                    <Eye className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => navigate(`/edit-cv/${stagiaire.id}`)}
+                    title="Modifier"
+                  >
+                    <Edit className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() =>
+                      handleDelete(
+                        stagiaire.id,
+                        `${stagiaire.prenom} ${stagiaire.nom}`
+                      )
+                    }
+                    title="Supprimer"
+                  >
+                    <Trash2 className="h-4 w-4 text-destructive" />
+                  </Button>
                 </div>
               </CardContent>
             </Card>

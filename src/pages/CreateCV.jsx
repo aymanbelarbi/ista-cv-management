@@ -93,7 +93,7 @@ const CreateCV = () => {
       });
     }
 
-    // navigate("/students");
+    navigate("/students");
   };
 
   return (

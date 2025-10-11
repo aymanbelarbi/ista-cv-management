@@ -55,20 +55,22 @@ const CVPreview = ({ formData }) => {
           </div>
 
           <div className="md:col-span-2 space-y-6">
-            <Section title="Expériences" icon={<Briefcase className="w-5 h-5" />}>
-              {experiences?.map((exp, index) => (
-                <div key={index} className={index > 0 ? "pt-4 border-t" : ""}>
-                  <h3 className="text-md font-semibold text-foreground">{exp.poste}</h3>
-                  <p className="font-medium text-muted-foreground text-sm">{exp.entreprise}</p>
-                  <p className="text-xs text-muted-foreground/80 mb-2">{exp.dateDebut} - {exp.dateFin}</p>
-                  <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                    {exp.missions?.map((mission, i) => (
-                      <li key={i}>{mission}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </Section>
+            {experiences && experiences.length > 0 && (
+              <Section title="Expériences" icon={<Briefcase className="w-5 h-5" />}>
+                {experiences.map((exp, index) => (
+                  <div key={index} className={index > 0 ? "pt-4 border-t" : ""}>
+                    <h3 className="text-md font-semibold text-foreground">{exp.poste}</h3>
+                    <p className="font-medium text-muted-foreground text-sm">{exp.entreprise}</p>
+                    <p className="text-xs text-muted-foreground/80 mb-2">{exp.dateDebut} - {exp.dateFin}</p>
+                    <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                      {exp.missions?.map((mission, i) => (
+                        <li key={i}>{mission}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </Section>
+            )}
           </div>
         </div>
       </CardContent>

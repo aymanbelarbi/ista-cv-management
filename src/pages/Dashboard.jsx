@@ -24,26 +24,19 @@ const Dashboard = () => {
       title: "Total Stagiaires",
       value: totalStagiaires,
       icon: Users,
-      color: "text-primary",
-      bgColor: "bg-primary/10",
+      color: "text-blue-600",
+      bgColor: "bg-blue-100",
     },
     {
       title: "CV Créés",
       value: totalStagiaires,
       icon: FileText,
-      color: "text-secondary",
-      bgColor: "bg-secondary/10",
-    },
-    {
-      title: "Filières",
-      value: FILIERES_ISTA.length,
-      icon: GraduationCap,
       color: "text-green-600",
-      bgColor: "bg-green-50",
+      bgColor: "bg-green-100",
     },
     {
       title: "Top Filière",
-      value: topFiliere?.[0]?.substring(0, 15) || "N/A",
+      value: topFiliere?.[0] || "N/A",
       icon: TrendingUp,
       color: "text-purple-600",
       bgColor: "bg-purple-50",
@@ -64,19 +57,17 @@ const Dashboard = () => {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {stats.map((stat) => (
           <Card key={stat.title}>
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                {stat.title}
-              </CardTitle>
-              <div className={`p-2 rounded-lg ${stat.bgColor}`}>
-                <stat.icon className={`h-5 w-5 ${stat.color}`} />
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
+            <CardContent className="p-6 flex items-center justify-between">
+                <div>
+                    <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
+                    <p className="text-xl md:text-2xl font-bold break-words">{stat.value}</p>
+                </div>
+                <div className={`p-3 rounded-lg ${stat.bgColor}`}>
+                    <stat.icon className={`h-6 w-6 ${stat.color}`} />
+                </div>
             </CardContent>
           </Card>
         ))}
@@ -108,11 +99,19 @@ const Dashboard = () => {
                     className="flex items-center justify-between p-4 border rounded-lg hover:bg-accent/50 transition-colors"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <span className="text-lg font-semibold text-primary">
-                          {stagiaire.prenom[0]}
-                          {stagiaire.nom[0]}
-                        </span>
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        {stagiaire.photo ? (
+                          <img
+                            src={stagiaire.photo}
+                            alt=""
+                            className="w-full h-full rounded-full object-cover"
+                          />
+                        ) : (
+                          <span className="text-lg font-semibold text-primary">
+                            {stagiaire.prenom[0]}
+                            {stagiaire.nom[0]}
+                          </span>
+                        )}
                       </div>
                       <div>
                         <p className="font-medium">
@@ -125,7 +124,7 @@ const Dashboard = () => {
                     </div>
                     <Button
                       variant="outline"
-                      onClick={() => navigate(`/students`)}
+                      onClick={() => navigate(`/cv-preview/${stagiaire.id}`)}
                     >
                       Voir
                     </Button>
