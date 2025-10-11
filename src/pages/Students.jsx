@@ -11,10 +11,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useNavigate } from "react-router-dom";
-import { Search, Trash2, Edit, FileDown } from "lucide-react";
+import { Search, Trash2, Edit, Eye } from "lucide-react";
 import { FILIERES_ISTA } from "@/types";
 import { toast } from "@/hooks/use-toast";
-import { generatePDF } from "@/lib/pdfGenerator";
 
 const Students = () => {
   const { stagiaires, deleteStagiaire } = useApp();
@@ -47,13 +46,6 @@ const Students = () => {
     }
   };
 
-  const handleDownloadPDF = (stagiaire) => {
-    generatePDF(stagiaire, "modern");
-    toast({
-      title: "CV téléchargé",
-      description: "Le CV a été généré en PDF",
-    });
-  };
 
   const annees = Array.from(new Set(stagiaires.map((s) => s.anneePromotion)))
     .sort()
@@ -174,10 +166,10 @@ const Students = () => {
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => handleDownloadPDF(stagiaire)}
-                      title="Télécharger CV"
+                      onClick={() => navigate(`/cv-preview/${stagiaire.id}`)}
+                      title="Aperçu du CV"
                     >
-                      <FileDown className="h-4 w-4" />
+                      <Eye className="h-4 w-4" />
                     </Button>
                     <Button
                       variant="outline"

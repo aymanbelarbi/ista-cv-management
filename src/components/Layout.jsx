@@ -25,13 +25,9 @@ const Layout = ({ children }) => {
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-8">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-lg font-bold text-primary-foreground">
-                  ISTA
-                </span>
-              </div>
+              <img src="/logo.png" alt="Logo" className="h-16" />
               <div>
-                <h1 className="font-bold text-lg">Gestion CV ISTA</h1>
+                <h1 className="font-bold text-lg">Gestion CV - ISTA Khemisset</h1>
                 <p className="text-xs text-muted-foreground">
                   OFPPT - Administration
                 </p>

@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Students from "./pages/Students";
 import CreateCV from "./pages/CreateCV";
+import CVPreviewPage from "./pages/CVPreviewPage";
 import Layout from "./components/Layout";
 import NotFound from "./pages/NotFound";
 
@@ -56,6 +57,14 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <CreateCV />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/cv-preview/:id"
+              element={
+                <ProtectedRoute>
+                  <CVPreviewPage />
                 </ProtectedRoute>
               }
             />
