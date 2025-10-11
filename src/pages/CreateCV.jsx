@@ -9,6 +9,7 @@ import ProfileStep from "@/components/cv-form/ProfileStep";
 import FormationStep from "@/components/cv-form/FormationStep";
 import ExperienceStep from "@/components/cv-form/ExperienceStep";
 import CompetencesStep from "@/components/cv-form/CompetencesStep";
+import CVPreview from "@/components/cv-preview/CVPreview";
 
 const CreateCV = () => {
   const { id } = useParams();
@@ -96,7 +97,7 @@ const CreateCV = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-7xl mx-auto space-y-6">
       <div>
         <h1 className="text-3xl font-bold">
           {isEdit ? "Modifier" : "Créer"} un CV
@@ -107,87 +108,92 @@ const CreateCV = () => {
         </p>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Informations du Stagiaire</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Tabs value={currentTab} onValueChange={setCurrentTab}>
-            <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="profile">Profil</TabsTrigger>
-              <TabsTrigger value="formation">Formation</TabsTrigger>
-              <TabsTrigger value="experience">Expérience</TabsTrigger>
-              <TabsTrigger value="competences">Compétences</TabsTrigger>
-            </TabsList>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <Card>
+          <CardHeader>
+            <CardTitle>Informations du Stagiaire</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Tabs value={currentTab} onValueChange={setCurrentTab}>
+              <TabsList className="grid w-full grid-cols-4">
+                <TabsTrigger value="profile">Profil</TabsTrigger>
+                <TabsTrigger value="formation">Formation</TabsTrigger>
+                <TabsTrigger value="experience">Expérience</TabsTrigger>
+                <TabsTrigger value="competences">Compétences</TabsTrigger>
+              </TabsList>
 
-            <TabsContent value="profile" className="space-y-4 mt-6">
-              <ProfileStep
-                formData={formData}
-                updateFormData={updateFormData}
-              />
-              <div className="flex justify-end">
-                <Button onClick={() => setCurrentTab("formation")}>
-                  Suivant
-                </Button>
-              </div>
-            </TabsContent>
+              <TabsContent value="profile" className="space-y-4 mt-6">
+                <ProfileStep
+                  formData={formData}
+                  updateFormData={updateFormData}
+                />
+                <div className="flex justify-end">
+                  <Button onClick={() => setCurrentTab("formation")}>
+                    Suivant
+                  </Button>
+                </div>
+              </TabsContent>
 
-            <TabsContent value="formation" className="space-y-4 mt-6">
-              <FormationStep
-                formData={formData}
-                updateFormData={updateFormData}
-              />
-              <div className="flex justify-between">
-                <Button
-                  variant="outline"
-                  onClick={() => setCurrentTab("profile")}
-                >
-                  Précédent
-                </Button>
-                <Button onClick={() => setCurrentTab("experience")}>
-                  Suivant
-                </Button>
-              </div>
-            </TabsContent>
+              <TabsContent value="formation" className="space-y-4 mt-6">
+                <FormationStep
+                  formData={formData}
+                  updateFormData={updateFormData}
+                />
+                <div className="flex justify-between">
+                  <Button
+                    variant="outline"
+                    onClick={() => setCurrentTab("profile")}
+                  >
+                    Précédent
+                  </Button>
+                  <Button onClick={() => setCurrentTab("experience")}>
+                    Suivant
+                  </Button>
+                </div>
+              </TabsContent>
 
-            <TabsContent value="experience" className="space-y-4 mt-6">
-              <ExperienceStep
-                formData={formData}
-                updateFormData={updateFormData}
-              />
-              <div className="flex justify-between">
-                <Button
-                  variant="outline"
-                  onClick={() => setCurrentTab("formation")}
-                >
-                  Précédent
-                </Button>
-                <Button onClick={() => setCurrentTab("competences")}>
-                  Suivant
-                </Button>
-              </div>
-            </TabsContent>
+              <TabsContent value="experience" className="space-y-4 mt-6">
+                <ExperienceStep
+                  formData={formData}
+                  updateFormData={updateFormData}
+                />
+                <div className="flex justify-between">
+                  <Button
+                    variant="outline"
+                    onClick={() => setCurrentTab("formation")}
+                  >
+                    Précédent
+                  </Button>
+                  <Button onClick={() => setCurrentTab("competences")}>
+                    Suivant
+                  </Button>
+                </div>
+              </TabsContent>
 
-            <TabsContent value="competences" className="space-y-4 mt-6">
-              <CompetencesStep
-                formData={formData}
-                updateFormData={updateFormData}
-              />
-              <div className="flex justify-between">
-                <Button
-                  variant="outline"
-                  onClick={() => setCurrentTab("experience")}
-                >
-                  Précédent
-                </Button>
-                <Button onClick={handleSubmit}>
-                  {isEdit ? "Mettre à jour" : "Créer le CV"}
-                </Button>
-              </div>
-            </TabsContent>
-          </Tabs>
-        </CardContent>
-      </Card>
+              <TabsContent value="competences" className="space-y-4 mt-6">
+                <CompetencesStep
+                  formData={formData}
+                  updateFormData={updateFormData}
+                />
+                <div className="flex justify-between">
+                  <Button
+                    variant="outline"
+                    onClick={() => setCurrentTab("experience")}
+                  >
+                    Précédent
+                  </Button>
+                  <Button onClick={handleSubmit}>
+                    {isEdit ? "Mettre à jour" : "Créer le CV"}
+                  </Button>
+                </div>
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
+        <div className="sticky top-6">
+          <CVPreview formData={formData} />
+        </div>
+      </div>
     </div>
   );
 };
