@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppProvider, useApp } from "./contexts/AppContext";
+import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Students from "./pages/Students";
@@ -16,7 +17,7 @@ const queryClient = new QueryClient();
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useApp();
-  return isAuthenticated ? <Layout>{children}</Layout> : <Navigate to="/" />;
+  return isAuthenticated ? <Layout>{children}</Layout> : <Navigate to="/login" />;
 };
 
 const App = () => (
@@ -27,7 +28,8 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
             <Route
               path="/dashboard"
               element={

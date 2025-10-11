@@ -4,13 +4,6 @@ import { useApp } from "@/contexts/AppContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 
 const Login = () => {
@@ -37,22 +30,15 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-      <Card className="w-full max-w-md mx-4">
-        <CardHeader className="space-y-4 text-center">
-          <div className="flex justify-center">
-            <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center">
-              <span className="text-3xl font-bold text-primary-foreground">
-                ISTA
-              </span>
-            </div>
+    <div className="w-full min-h-screen lg:grid lg:grid-cols-2">
+      <div className="flex items-center justify-center py-12">
+        <div className="mx-auto w-[380px] space-y-6">
+          <div className="space-y-2 text-center">
+            <h1 className="text-3xl font-bold">Accès Administrateur</h1>
+            <p className="text-muted-foreground">
+              Veuillez entrer vos identifiants pour continuer
+            </p>
           </div>
-          <CardTitle className="text-2xl">Gestion des CV ISTA</CardTitle>
-          <CardDescription>
-            Connectez-vous pour accéder à l'administration
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
@@ -76,15 +62,22 @@ const Login = () => {
                 required
               />
             </div>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full !mt-6">
               Se connecter
             </Button>
-            <p className="text-sm text-muted-foreground text-center mt-4">
+            <p className="text-xs text-muted-foreground text-center pt-2">
               Démo: admin@ista.ma / admin123
             </p>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
+      <div className="hidden lg:flex flex-col items-center justify-center bg-primary p-8">
+        <div className="text-center text-primary-foreground max-w-md flex flex-col items-center">
+          <img src="/logo.png" alt="Logo" className="h-24 mx-auto mb-6" />
+          <h2 className="text-4xl font-bold tracking-tight  whitespace-nowrap">Gestion des CV - ISTA Khemisset</h2>
+          <p className="text-lg mt-4 text-primary-foreground/80">Une plateforme centralisée pour la gestion des parcours professionnels de nos lauréats</p>
+        </div>
+      </div>
     </div>
   );
 };

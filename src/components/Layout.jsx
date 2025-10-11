@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
             <div className="flex items-center gap-3">
               <img src="/logo.png" alt="Logo" className="h-16" />
               <div>
-                <h1 className="font-bold text-lg">Gestion CV - ISTA Khemisset</h1>
+                <h1 className="font-bold text-lg">Gestion des CV - ISTA Khemisset</h1>
                 <p className="text-xs text-muted-foreground">
                   OFPPT - Administration
                 </p>
