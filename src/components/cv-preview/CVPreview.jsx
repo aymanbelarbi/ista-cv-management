@@ -20,38 +20,46 @@ const CVPreview = ({ formData }) => {
           </div>
         )}
         <div>
-          <h1 className="text-4xl font-bold tracking-tight">{prenom || "Prénom"} {nom || "Nom"}</h1>
-          <p className="text-xl text-primary-foreground/80 mt-1">{filiere || "Filière"}</p>
+          <h1 className="text-4xl font-bold tracking-tight">{prenom || ""} {nom || ""}</h1>
+          <p className="text-xl text-primary-foreground/80 mt-1">{filiere || ""}</p>
         </div>
       </CardHeader>
       <CardContent className="p-6 space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-1 space-y-6">
-            <Section title="Contact" icon={<Mail className="w-5 h-5" />}>
-              <ContactInfo icon={<Mail className="w-4 h-4" />} text={email} />
-              <ContactInfo icon={<Phone className="w-4 h-4" />} text={telephone} />
-              <ContactInfo icon={<MapPin className="w-4 h-4" />} text={adresse} />
-            </Section>
+            {(email || telephone || adresse) && (
+              <Section title="Contact" icon={<Mail className="w-5 h-5" />}>
+                <ContactInfo icon={<Mail className="w-4 h-4" />} text={email} />
+                <ContactInfo icon={<Phone className="w-4 h-4" />} text={telephone} />
+                <ContactInfo icon={<MapPin className="w-4 h-4" />} text={adresse} />
+              </Section>
+            )}
 
-            <Section title="Formation" icon={<GraduationCap className="w-5 h-5" />}>
-              <p className="font-semibold text-foreground">{filiere}</p>
-              <p className="text-sm text-muted-foreground">Promotion {anneePromotion}</p>
-              <p className="mt-2 text-sm">{diplomeBac}</p>
-            </Section>
+            {(filiere || anneePromotion || diplomeBac) && (
+              <Section title="Formation" icon={<GraduationCap className="w-5 h-5" />}>
+                <p className="font-semibold text-foreground">{filiere}</p>
+                <p className="text-sm text-muted-foreground">Promotion {anneePromotion}</p>
+                <p className="mt-2 text-sm">{diplomeBac}</p>
+              </Section>
+            )}
 
-            <Section title="Compétences" icon={<Star className="w-5 h-5" />}>
-              <SkillList title="Techniques" skills={competencesTechniques} />
-              <SkillList title="Soft Skills" skills={softSkills} />
-            </Section>
+            {(competencesTechniques?.length > 0 || softSkills?.length > 0) && (
+              <Section title="Compétences" icon={<Star className="w-5 h-5" />}>
+                <SkillList title="Techniques" skills={competencesTechniques} />
+                <SkillList title="Soft Skills" skills={softSkills} />
+              </Section>
+            )}
 
-            <Section title="Langues" icon={<Languages className="w-5 h-5" />}>
-              {langues?.map((lang, index) => (
-                <div key={index} className="flex justify-between text-sm">
-                  <span className="text-foreground">{lang.langue}</span>
-                  <span className="text-muted-foreground font-medium">{lang.niveau}</span>
-                </div>
-              ))}
-            </Section>
+            {langues?.length > 0 && (
+              <Section title="Langues" icon={<Languages className="w-5 h-5" />}>
+                {langues.map((lang, index) => (
+                  <div key={index} className="flex justify-between text-sm">
+                    <span className="text-foreground">{lang.langue}</span>
+                    <span className="text-muted-foreground font-medium">{lang.niveau}</span>
+                  </div>
+                ))}
+              </Section>
+            )}
           </div>
 
           <div className="lg:col-span-2 space-y-6">
