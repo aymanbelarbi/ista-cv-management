@@ -3,12 +3,15 @@ import { useApp } from '@/contexts/AppContext';
 import CVPreview from '@/components/cv-preview/CVPreview';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Printer } from 'lucide-react';
+import usePageTitle from '@/hooks/usePageTitle';
 
 const CVPreviewPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { getStagiaire } = useApp();
   const stagiaire = getStagiaire(id);
+
+  usePageTitle(stagiaire ? `CV de ${stagiaire.prenom} ${stagiaire.nom}` : 'Aperçu du CV');
 
   const handlePrint = () => {
     window.print();
@@ -18,7 +21,7 @@ const CVPreviewPage = () => {
     return (
       <div className="text-center py-12">
         <h1 className="text-2xl font-bold">Stagiaire non trouvé</h1>
-        <Button onClick={() => navigate('/students')} className="mt-4">Retour à la liste</Button>
+        <Button onClick={() => navigate('/stagiaires')} className="mt-4">Retour à la liste</Button>
       </div>
     );
   }
@@ -26,7 +29,7 @@ const CVPreviewPage = () => {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       <div className="flex justify-between items-center print:hidden">
-        <Button variant="outline" onClick={() => navigate('/students')}>
+        <Button variant="outline" onClick={() => navigate('/stagiaires')}>
           <ArrowLeft className="h-4 w-4 mr-2" />
           Retour
         </Button>

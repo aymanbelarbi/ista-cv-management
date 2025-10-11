@@ -4,10 +4,13 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Users, FileText, GraduationCap, TrendingUp } from "lucide-react";
 import { FILIERES_ISTA } from "@/types";
+import usePageTitle from "@/hooks/usePageTitle";
 
 const Dashboard = () => {
   const { stagiaires } = useApp();
   const navigate = useNavigate();
+
+  usePageTitle("Tableau de Bord");
 
   const totalStagiaires = stagiaires.length;
   const filiereStats = stagiaires.reduce((acc, s) => {
@@ -52,12 +55,12 @@ const Dashboard = () => {
             Vue d'ensemble de la gestion des CV
           </p>
         </div>
-        <Button onClick={() => navigate("/create-cv")} size="lg">
+        <Button onClick={() => navigate("/stagiaires/nouveau")} size="lg">
           + Créer un CV
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {stats.map((stat) => (
           <Card key={stat.title}>
             <CardContent className="p-6 flex items-center justify-between">
@@ -84,7 +87,7 @@ const Dashboard = () => {
               <p className="text-muted-foreground">
                 Aucun stagiaire pour le moment
               </p>
-              <Button onClick={() => navigate("/create-cv")} className="mt-4">
+              <Button onClick={() => navigate("/stagiaires/nouveau")} className="mt-4">
                 Créer le premier CV
               </Button>
             </div>
@@ -124,7 +127,7 @@ const Dashboard = () => {
                     </div>
                     <Button
                       variant="outline"
-                      onClick={() => navigate(`/cv-preview/${stagiaire.id}`)}
+                      onClick={() => navigate(`/stagiaires/cv/${stagiaire.id}`)}
                     >
                       Voir
                     </Button>

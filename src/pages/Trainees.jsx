@@ -14,8 +14,10 @@ import { useNavigate } from "react-router-dom";
 import { Search, Trash2, Edit, Eye } from "lucide-react";
 import { FILIERES_ISTA } from "@/types";
 import { toast } from "@/hooks/use-toast";
+import usePageTitle from "@/hooks/usePageTitle";
 
-const Students = () => {
+const Trainees = () => {
+  usePageTitle("Liste des Stagiaires");
   const { stagiaires, deleteStagiaire } = useApp();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
@@ -60,15 +62,15 @@ const Students = () => {
             Liste complète des stagiaires et leurs CV
           </p>
         </div>
-        <Button onClick={() => navigate("/create-cv")} size="lg">
+        <Button onClick={() => navigate("/stagiaires/nouveau")} size="lg">
           + Nouveau Stagiaire
         </Button>
       </div>
 
       <Card>
         <CardContent className="pt-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="md:col-span-2 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="sm:col-span-2 lg:col-span-2 relative">
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Rechercher par nom, prénom ou matricule..."
@@ -146,7 +148,7 @@ const Students = () => {
                   <Button
                     variant="outline"
                     size="icon"
-                    onClick={() => navigate(`/cv-preview/${stagiaire.id}`)}
+                    onClick={() => navigate(`/stagiaires/cv/${stagiaire.id}`)}
                     title="Aperçu du CV"
                   >
                     <Eye className="h-4 w-4" />
@@ -154,7 +156,7 @@ const Students = () => {
                   <Button
                     variant="outline"
                     size="icon"
-                    onClick={() => navigate(`/edit-cv/${stagiaire.id}`)}
+                    onClick={() => navigate(`/stagiaires/modifier/${stagiaire.id}`)}
                     title="Modifier"
                   >
                     <Edit className="h-4 w-4" />
@@ -182,4 +184,4 @@ const Students = () => {
   );
 };
 
-export default Students;
+export default Trainees;

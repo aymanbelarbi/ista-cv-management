@@ -10,12 +10,14 @@ import FormationStep from "@/components/cv-form/FormationStep";
 import ExperienceStep from "@/components/cv-form/ExperienceStep";
 import CompetencesStep from "@/components/cv-form/CompetencesStep";
 import CVPreview from "@/components/cv-preview/CVPreview";
+import usePageTitle from "@/hooks/usePageTitle";
 
 const CreateCV = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addStagiaire, updateStagiaire, getStagiaire } = useApp();
   const isEdit = !!id;
+  usePageTitle(isEdit ? "Modifier le CV" : "Créer un CV");
   const existingStagiaire = isEdit ? getStagiaire(id) : null;
 
   const [currentTab, setCurrentTab] = useState("profile");
@@ -93,7 +95,7 @@ const CreateCV = () => {
       });
     }
 
-    navigate("/students");
+    navigate("/stagiaires");
   };
 
   return (
@@ -115,12 +117,14 @@ const CreateCV = () => {
           </CardHeader>
           <CardContent>
             <Tabs value={currentTab} onValueChange={setCurrentTab}>
-              <TabsList className="grid w-full grid-cols-4">
-                <TabsTrigger value="profile">Profil</TabsTrigger>
-                <TabsTrigger value="formation">Formation</TabsTrigger>
-                <TabsTrigger value="experience">Expérience</TabsTrigger>
-                <TabsTrigger value="competences">Compétences</TabsTrigger>
-              </TabsList>
+              <div className="overflow-x-auto">
+                <TabsList className="grid w-full grid-cols-4 min-w-[400px]">
+                  <TabsTrigger value="profile">Profil</TabsTrigger>
+                  <TabsTrigger value="formation">Formation</TabsTrigger>
+                  <TabsTrigger value="experience">Expérience</TabsTrigger>
+                  <TabsTrigger value="competences">Compétences</TabsTrigger>
+                </TabsList>
+              </div>
 
               <TabsContent value="profile" className="space-y-4 mt-6">
                 <ProfileStep

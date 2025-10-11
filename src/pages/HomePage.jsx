@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import usePageTitle from "@/hooks/usePageTitle";
 
 const HomePage = () => {
+  usePageTitle("Accueil");
   const navigate = useNavigate();
 
   return (

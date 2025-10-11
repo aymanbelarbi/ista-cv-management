@@ -25,8 +25,8 @@ const CVPreview = ({ formData }) => {
         </div>
       </CardHeader>
       <CardContent className="p-6 space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="md:col-span-1 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-1 space-y-6">
             <Section title="Contact" icon={<Mail className="w-5 h-5" />}>
               <ContactInfo icon={<Mail className="w-4 h-4" />} text={email} />
               <ContactInfo icon={<Phone className="w-4 h-4" />} text={telephone} />
@@ -54,7 +54,7 @@ const CVPreview = ({ formData }) => {
             </Section>
           </div>
 
-          <div className="md:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-6">
             {experiences && experiences.length > 0 && (
               <Section title="Expériences" icon={<Briefcase className="w-5 h-5" />}>
                 {experiences.map((exp, index) => (

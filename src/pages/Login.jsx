@@ -5,8 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
+import usePageTitle from "@/hooks/usePageTitle";
 
 const Login = () => {
+  usePageTitle("Connexion");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useApp();
@@ -19,7 +21,7 @@ const Login = () => {
         title: "Connexion réussie",
         description: "Bienvenue dans l'application de gestion des CV ISTA",
       });
-      navigate("/dashboard");
+      navigate("/tableau-de-bord");
     } else {
       toast({
         title: "Erreur de connexion",

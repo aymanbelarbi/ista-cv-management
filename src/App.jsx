@@ -7,7 +7,7 @@ import { AppProvider, useApp } from "./contexts/AppContext";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import Students from "./pages/Students";
+import Trainees from "./pages/Trainees";
 import CreateCV from "./pages/CreateCV";
 import CVPreviewPage from "./pages/CVPreviewPage";
 import Layout from "./components/Layout";
@@ -31,7 +31,7 @@ const App = () => (
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
             <Route
-              path="/dashboard"
+              path="/tableau-de-bord"
               element={
                 <ProtectedRoute>
                   <Dashboard />
@@ -39,23 +39,15 @@ const App = () => (
               }
             />
             <Route
-              path="/students"
+              path="/stagiaires"
               element={
                 <ProtectedRoute>
-                  <Students />
+                  <Trainees />
                 </ProtectedRoute>
               }
             />
             <Route
-              path="/create-cv"
-              element={
-                <ProtectedRoute>
-                  <CreateCV />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/edit-cv/:id"
+              path="/stagiaires/nouveau"
               element={
                 <ProtectedRoute>
                   <CreateCV />
@@ -63,7 +55,15 @@ const App = () => (
               }
             />
             <Route
-              path="/cv-preview/:id"
+              path="/stagiaires/modifier/:id"
+              element={
+                <ProtectedRoute>
+                  <CreateCV />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/stagiaires/cv/:id"
               element={
                 <ProtectedRoute>
                   <CVPreviewPage />
